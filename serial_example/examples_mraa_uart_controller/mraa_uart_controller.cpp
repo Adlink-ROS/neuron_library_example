@@ -1,7 +1,6 @@
 // Copyright 2020 ADLINK Technology, Inc.
 // Developer:  'chih-chieh.chang@adlinktech.com'
-// This node will subscribe to a topic 'topic' and will write the message to uart port.
-// This node will listen to the uart port every 500ms and will publish the message from the uart to the topic 'topic1'.
+
 #include <memory>
 #include <signal.h>
 #include <stdio.h>
