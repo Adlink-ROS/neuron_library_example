@@ -1,16 +1,16 @@
 # Serial example
 ====
 ## Examples of controlling uart on ROScubeI based on mraa api
-
+---
 ### Package 'examples_mraa_uart_controller':
 This package will create a node named 'uart_mraa_controller', and this node has two functions:
 1. This node will subscribe to a topic 'message_to_uart' and will write the message to uart port. 
 2. This node will listen to the uart port every 500ms and will publish the message from the uart to the topic 'message_from_uart'.
 
-### Package 'examples_data_publisher'
+### Package 'examples_data_publisher':
 This package create a node named 'data_publisher', and this node publishes data every 500ms to a topic 'message_to_uart'.
 
-### Package 'examples_uart_message_subscriber'
+### Package 'examples_uart_message_subscriber':
 This package create a node named 'message_subscriber', and this node subscirbes to topic 'message_from_uart', and show the message from the uart on the screen.
 
 ### *Remarks*
