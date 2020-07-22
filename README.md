@@ -6,11 +6,14 @@ This package will create a node named 'uart_mraa_controller', and this node has 
 1. This node will subscribe to a topic 'message_to_uart' and will write the message to uart port. 
 2. This node will listen to the uart port every 500ms and will publish the message from the uart to the topic 'message_from_uart'.
 
+
 ### Package 'examples_data_publisher':
 This package create a node named 'data_publisher', and this node publishes data every 500ms to a topic 'message_to_uart'.
 
+
 ### Package 'examples_uart_message_subscriber':
 This package create a node named 'message_subscriber', and this node subscirbes to topic 'message_from_uart', and show the message from the uart on the screen.
+
 
 ### *Remarks*
 1. Pleace install mraa for ROScube-I from [Adlink-ROS-mraa](https://github.com/Adlink-ROS/mraa.git).
