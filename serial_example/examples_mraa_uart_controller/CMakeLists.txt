@@ -22,6 +22,18 @@ add_executable(mraa_uart_controller mraa_uart_controller.cpp)
 ament_target_dependencies(mraa_uart_controller rclcpp std_msgs)
 target_link_libraries(mraa_uart_controller mraa)
 
+include_directories(/opt/neuron-library/include/)
+link_directories(/opt/neuron-library/lib/)
+
+# RPATH settings: must be set before add_executable
+## Don't skip RPATH for the build tree
+SET(CMAKE_SKIP_BUILD_RPATH FALSE)
+## Use RPATH while building
+SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+## Set the RPATH
+SET(CMAKE_INSTALL_RPATH "/opt/neuron-library/lib/")
+## Use RPATH while install
+SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 install(TARGETS
 
