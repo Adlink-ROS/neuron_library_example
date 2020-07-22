@@ -42,8 +42,8 @@ public:
   {
     uart_init();
     subscription_ = this->create_subscription<std_msgs::msg::String>(
-      "topic", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
-    publisher_ = this->create_publisher<std_msgs::msg::String>("topic1", 11);
+      "message_to_uart", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
+    publisher_ = this->create_publisher<std_msgs::msg::String>("message_from_uart", 11);
     timer_ = this->create_wall_timer(
       500ms, std::bind(&MinimalSubscriber::timer_callback, this));
   }
