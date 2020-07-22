@@ -1,17 +1,7 @@
-// Copyright 2016 Open Source Robotics Foundation, Inc.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
+// Copyright 2020 ADLINK Technology, Inc.
+// Developer:  'chih-chieh.chang@adlinktech.com'
+// This node will subscribe to a topic 'topic' and will write the message to uart port.
+// This node will listen to the uart port every 500ms and will publish the message from the uart to the topic 'topic1'.
 #include <memory>
 #include <signal.h>
 #include <stdio.h>
@@ -37,15 +27,18 @@ using std::placeholders::_1;
 /* UART port name */
 const char* dev_path = "/dev/ttyS1";
 mraa_uart_context uart;
-volatile sig_atomic_t flag = 1;
+int baudrate = 9600, stopbits = 1, databits = 8;
+mraa_uart_parity_t parity = MRAA_UART_PARITY_NONE;
+unsigned int ctsrts = FALSE, xonxoff = FALSE;
+const char* name = NULL;
 
-char record[8] ;
+char record[256] ;
 
 class MinimalSubscriber : public rclcpp::Node
 {
 public:
   MinimalSubscriber()
-  : Node("minimal_subscriber")
+  : Node("uart_mraa_controller")
   {
     uart_init();
     subscription_ = this->create_subscription<std_msgs::msg::String>(
@@ -58,16 +51,9 @@ public:
 private:
   
   int uart_init()
-{
+  {
     mraa_result_t status = MRAA_SUCCESS;
 
-    int baudrate = 9600, stopbits = 1, databits = 8;
-    mraa_uart_parity_t parity = MRAA_UART_PARITY_NONE;
-    unsigned int ctsrts = FALSE, xonxoff = FALSE;
-    const char* name = NULL;
-
-    /* install signal handler */
-  //  signal(SIGINT, sig_handler);
     /* initialize mraa for the platform (not needed most of the time) */
     mraa_init();
 
@@ -75,32 +61,21 @@ private:
     /* initialize uart*/ 
     uart = mraa_uart_init_raw(dev_path);
     if (uart == NULL) {
-        RCLCPP_ERROR(this-> get_logger(), "Failed to initialize UART\n");
-        return EXIT_FAILURE;
+      RCLCPP_ERROR(this-> get_logger(), "Failed to initialize UART\n");
+      return EXIT_FAILURE;
     } 
 
     /* set serial port parameters */
     status =
     mraa_uart_settings(-1, &dev_path, &name, &baudrate, &databits, &stopbits, &parity, &ctsrts, &xonxoff);
     if (status != MRAA_SUCCESS) {
-   //     goto err_exit;
+      RCLCPP_ERROR(this-> get_logger(), "Failed to set serial port parameters UART\n");
+      return EXIT_FAILURE;
     }
-
-    /* stop uart */
-    //mraa_uart_stop(uart);
-
-    //! [Interesting]
-    /* deinitialize mraa for the platform (nuart_init();
-
-    /* stop uart */
-    //mraa_uart_stop(uart);
-
-    /* deinitialize mraa for the platform (not needed most of the times) */
-    //mraa_deinit();
-
-    //return EXIT_FAILURE;
     return EXIT_SUCCESS;
 
+
+    
   }
   void topic_callback(const std_msgs::msg::String::SharedPtr msg) const
   {
@@ -111,14 +86,15 @@ private:
   rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
 
   void timer_callback()
-  {
-
-    //record = nullptr;
-    
-    if (mraa_uart_data_available(uart,50)){
-    mraa_uart_read(uart,record,8);
-    RCLCPP_INFO(this->get_logger(), "I heard form uart: '%s'", record);
-    //publisher_->publish(*message);
+  { 
+    if (mraa_uart_data_available(uart,50))
+    {
+      int len = mraa_uart_read(uart,record,sizeof(record));
+      record[len] = 0;
+      RCLCPP_INFO(this->get_logger(), "I heard form uart: '%s'", record);
+      auto msg_ = std::make_unique<std_msgs::msg::String>();
+      msg_->data = record;
+      publisher_->publish(std::move(msg_));
     }
 
   }

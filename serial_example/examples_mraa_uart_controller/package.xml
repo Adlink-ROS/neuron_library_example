@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="2">
-  <name>uart_controller</name>
+  <name>examples_mraa_uart_controller</name>
   <version>0.9.2</version>
   <description>Examples of minimal subscribers</description>
   <maintainer email="jacob@openrobotics.org">Jacob Perron</maintainer>
