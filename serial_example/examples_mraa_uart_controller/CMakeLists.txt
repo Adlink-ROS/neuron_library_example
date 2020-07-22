@@ -15,15 +15,12 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 
 # MRAA
-include_directories(/home/ros/mraa\ workspace/mraa/api/)
+include_directories(/home/ros/mraa\ workspace/mraa/api/)  #TODO: change the directory in the future
 link_directories(/home/ros/mraa\ workspace/mraa/build/src/)
 
 add_executable(mraa_uart_controller mraa_uart_controller.cpp)
 ament_target_dependencies(mraa_uart_controller rclcpp std_msgs)
 target_link_libraries(mraa_uart_controller mraa)
-
-include_directories(/opt/neuron-library/include/)
-link_directories(/opt/neuron-library/lib/)
 
 # RPATH settings: must be set before add_executable
 ## Don't skip RPATH for the build tree
@@ -31,7 +28,7 @@ SET(CMAKE_SKIP_BUILD_RPATH FALSE)
 ## Use RPATH while building
 SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 ## Set the RPATH
-SET(CMAKE_INSTALL_RPATH "/opt/neuron-library/lib/")
+SET(CMAKE_INSTALL_RPATH "/home/ros/mraa\ workspace/mraa/build/src/")
 ## Use RPATH while install
 SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
@@ -39,7 +36,7 @@ install(TARGETS
 
   mraa_uart_controller
   
-  DESTINATION lib/${PROJECT_NAME})#subscriber_not_composable  subscriber_lambda
+  DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

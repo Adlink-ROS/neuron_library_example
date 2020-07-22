@@ -1,7 +1,6 @@
 // Copyright 2020 ADLINK Technology, Inc.
 // Developer:  'chih-chieh.chang@adlinktech.com'
-// This node will subscribe to a topic 'topic' and will write the message to uart port.
-// This node will listen to the uart port every 500ms and will publish the message from the uart to the topic 'topic1'.
+
 #include <memory>
 #include <signal.h>
 #include <stdio.h>
@@ -64,7 +63,6 @@ private:
       RCLCPP_ERROR(this-> get_logger(), "Failed to initialize UART\n");
       return EXIT_FAILURE;
     } 
-
     /* set serial port parameters */
     status =
     mraa_uart_settings(-1, &dev_path, &name, &baudrate, &databits, &stopbits, &parity, &ctsrts, &xonxoff);
@@ -73,10 +71,8 @@ private:
       return EXIT_FAILURE;
     }
     return EXIT_SUCCESS;
-
-
-    
   }
+
   void topic_callback(const std_msgs::msg::String::SharedPtr msg) const
   {
     RCLCPP_INFO(this->get_logger(), "I sended: '%s'", msg->data.c_str());
@@ -99,7 +95,6 @@ private:
   }
     rclcpp::TimerBase::SharedPtr timer_;
     rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
-    size_t count_;
 };
 
 
