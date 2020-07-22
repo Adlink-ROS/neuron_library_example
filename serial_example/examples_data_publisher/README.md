@@ -1,0 +1,1 @@
+This package create a node called 'uart_mraa_controller', and this node publishes data every 500ms to a topic 'topic'.
