@@ -15,6 +15,6 @@ This package create a node named 'message_subscriber', and this node subscirbes 
 
 ### *Remarks*
 1. Pleace install mraa for ROScube-I from [Adlink-ROS-mraa](https://github.com/Adlink-ROS/mraa.git).
-You should change the directory in /examples_mraa_uart_controller/CMakeLists.txt line 18 & 19 to the directory where the mraa is installed. This will be fixed in the future.
+2. You should change the directory in /examples_mraa_uart_controller/CMakeLists.txt line 18 & 19 to the directory where the mraa is installed. This will be fixed in the future.
 
 
