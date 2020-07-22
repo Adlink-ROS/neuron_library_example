@@ -80,7 +80,6 @@ private:
   void topic_callback(const std_msgs::msg::String::SharedPtr msg) const
   {
     RCLCPP_INFO(this->get_logger(), "I sended: '%s'", msg->data.c_str());
-    RCLCPP_INFO(this->get_logger(), "size: '%x'", sizeof(msg->data.c_str()));
     mraa_uart_write(uart, msg->data.c_str(), sizeof(msg->data.c_str()));
   }
   rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
