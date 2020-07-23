@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>examples_mraa_uart_controller</name>
+  <name>nsdk_example_serial</name>
   <version>0.1.0</version>
   <description>Examples of ROS2 uart controller based on mraa</description>
   <maintainer email="chih-chieh.chang@adlinktech.com">Chih-Chieh Chang</maintainer>
