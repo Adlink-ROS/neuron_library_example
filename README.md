@@ -10,7 +10,7 @@ This package will create a node named 'uart_mraa_controller', and this node has 
 2. This node will listen to the uart port every 500ms and will publish the message from the uart to the topic 'message_from_uart'.
 
 ```
-ros2 run examples_mraa_uart_controller mraa_uart_controller
+ros2 run nsdk_example_serial mraa_uart_controller
 ```
 
 ### Package 'examples_data_publisher'
@@ -18,7 +18,7 @@ ros2 run examples_mraa_uart_controller mraa_uart_controller
 This package create a node named 'data_publisher', and this node publishes data every 500ms to a topic 'message_to_uart'.  
 
 ```
-ros2 run examples_data_publisher examples_data_publisher 
+ros2 run nsdk_example_serial data_publisher 
 ```
 
 ### Package 'examples_uart_message_subscriber'
@@ -26,7 +26,7 @@ ros2 run examples_data_publisher examples_data_publisher
 This package create a node named 'message_subscriber', and this node subscirbes to topic 'message_from_uart', and show the message from the uart on the screen.  
 
 ```
-ros2 run examples_uart_message_subscriber uart_message_subscriber 
+ros2 run nsdk_example_serial uart_message_subscriber 
 ```
 
 ### *Remarks*
