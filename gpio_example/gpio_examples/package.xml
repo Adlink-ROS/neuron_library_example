@@ -4,8 +4,8 @@
   <name>nsdk_example_gpio</name>
   <version>0.8.0</version>
   <description>GPIO Service based on Neuron Library</description>
-  <maintainer email="evshary@gmail.com">ChenYing Kuo</maintainer>
-  <license>BSD</license>
+  <maintainer email="chenying.kuo@adlinktech.com">ChenYing Kuo</maintainer>
+  <license>Apache License 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
