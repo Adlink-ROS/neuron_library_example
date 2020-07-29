@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>neuronlib_gpio</name>
+  <name>nsdk_example_gpio</name>
   <version>0.8.0</version>
   <description>GPIO Service based on Neuron Library</description>
   <maintainer email="evshary@gmail.com">ChenYing Kuo</maintainer>

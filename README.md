@@ -1,35 +1,20 @@
 # Neuron Library Example
 
-## Serial Port
+## GPIO Port
 
-### Package 'examples_mraa_uart_controller':
+### Package 'nsdk_example_gpio':
 
-This package will create a node named 'uart_mraa_controller', and this node has two functions:
+This package contains two executors: gpio_server and gpio_client.
 
-1. This node will subscribe to a topic 'message_to_uart' and will write the message to uart port. 
-2. This node will listen to the uart port every 500ms and will publish the message from the uart to the topic 'message_from_uart'.
-
+1. Executor 'gpio_server' controlls the gpio port by using mraa library, when 'gpio_server' get the request from 
 ```
-ros2 run nsdk_example_serial mraa_uart_controller
+Run the gpio_server of this package by using *ros2 run neuronlib_gpio gpio_server *   
 ```
-
-### Package 'examples_data_publisher'
-
-This package create a node named 'data_publisher', and this node publishes data every 500ms to a topic 'message_to_uart'.  
-
+2.Executor 'gpio_client' calls a request to the 'gpio_server', and in the the request contains 2 or 3 parameters. 
 ```
-ros2 run nsdk_example_serial data_publisher 
+Run the gpio_server of this package by using *ros2 run neuronlib_gpio gpio_client <PARAMETERS> *  
 ```
-
-### Package 'examples_uart_message_subscriber'
-
-This package create a node named 'message_subscriber', and this node subscirbes to topic 'message_from_uart', and show the message from the uart on the screen.  
-
-```
-ros2 run nsdk_example_serial uart_message_subscriber 
-```
-
-### *Remarks*
-
-1. Pleace install mraa for ROScube-I from [Adlink-ROS-mraa](https://github.com/Adlink-ROS/mraa.git).
-2. You should change the directory in /examples_mraa_uart_controller/CMakeLists.txt line 18 & 19 to the directory where the mraa is installed. This will be fixed in the future.
+Replace the <PARAMETERS> using : I <gpio_num>  
+       			       : O <gpio_num> value      _Remarks: value 0 for high (5V), value 1 for low (0V)_  
+	-In the example for reading the input of pin number 1, you should run the client using:*ros2 run neuronlib_gpio gpio_client I 1* 
+	-For setting low voltage(0V) to the output of pin number 34, you should run the client using:*ros2 run neuronlib_gpio gpio_client O 34 1*  

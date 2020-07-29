@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(neuronlib_gpio)
+project(nsdk_example_gpio)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
