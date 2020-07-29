@@ -1,0 +1,12 @@
+# 'I':in, 'O':out
+char  direction
+# GPIO pin number
+uint8 gpio_num
+# Only valid for out direction: 0 or 1
+uint8 value
+
+---
+# 0:success, 1:fail
+int8  result
+# Only valid for in direction: 0 or 1
+uint8 ret_val

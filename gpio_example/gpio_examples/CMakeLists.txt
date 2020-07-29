@@ -1,5 +1,10 @@
 cmake_minimum_required(VERSION 3.5)
-project(nsdk_example_serial)
+project(neuronlib_gpio)
+
+# Default to C99
+if(NOT CMAKE_C_STANDARD)
+  set(CMAKE_C_STANDARD 99)
+endif()
 
 # Default to C++14
 if(NOT CMAKE_CXX_STANDARD)
@@ -10,9 +15,11 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
+# find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(neuronlib_interfaces REQUIRED) # Our own Interface
 find_package(rclcpp REQUIRED)
-find_package(std_msgs REQUIRED)
+find_package(rclcpp_components REQUIRED)
 
 # MRAA
 include_directories(/home/ros/mraa_ws/src/mraa/api)    #TODO: change the path in the future
@@ -27,24 +34,31 @@ SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 SET(CMAKE_INSTALL_RPATH "/home/ros/mraa_ws/src/mraa/build/src") #TODO: change the path in the future
 ## Use RPATH while install
 SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-
-add_executable(uart_message_subscriber src/message_subscriber.cpp)
-add_executable(mraa_uart_controller src/mraa_uart_controller.cpp)
-add_executable(data_publisher src/data_publisher.cpp)
-ament_target_dependencies(data_publisher rclcpp std_msgs)
-ament_target_dependencies(uart_message_subscriber rclcpp std_msgs)
-ament_target_dependencies(mraa_uart_controller rclcpp std_msgs)
-target_link_libraries(mraa_uart_controller mraa)
-
+# For server
+add_library(gpio_neuronlib SHARED 
+  src/gpio_server.cpp)
+ament_target_dependencies(gpio_neuronlib
+  "neuronlib_interfaces"
+  "rclcpp"
+  "rclcpp_components")
+target_link_libraries(gpio_neuronlib
+  mraa
+)
+rclcpp_components_register_node(gpio_neuronlib
+  PLUGIN "gpio_server_node::GpioServerNode"
+  EXECUTABLE gpio_server)
 install(TARGETS
-  uart_message_subscriber
-  mraa_uart_controller
-  data_publisher
-  DESTINATION lib/${PROJECT_NAME})
+  gpio_neuronlib
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin)
 
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  ament_lint_auto_find_test_dependencies()
-endif()
+# For client
+add_executable(gpio_client src/gpio_client.cpp)
+ament_target_dependencies(gpio_client
+  "neuronlib_interfaces"
+  "rclcpp")
+install(TARGETS gpio_client
+  DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
