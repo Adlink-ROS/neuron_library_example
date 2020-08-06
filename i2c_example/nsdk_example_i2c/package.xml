@@ -4,7 +4,7 @@
   <name>nsdk_example_i2c</name>
   <version>0.8.0</version>
   <description>I2C Service based on Neuron Library</description>
-  <maintainer email="jeffrey870517@gmail.com">jeffrey870517</maintainer>
+  <maintainer email="chih-chieh.chang@adlinktech.com">Chih-Chieh Chang</maintainer>
   <license>Apache License 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>

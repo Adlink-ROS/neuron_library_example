@@ -4,7 +4,7 @@
   <name>neuronlib_i2c_interfaces</name>
   <version>0.8.0</version>
   <description>Neuron Library Interfaces for I2C</description>
-  <maintainer email="chih-chieh.chang@adlinktech.com">ros</maintainer>
+  <maintainer email="chih-chieh.chang@adlinktech.com">Chih-Chieh Chang</maintainer>
   <license>Apache License 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
