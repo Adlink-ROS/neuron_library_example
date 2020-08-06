@@ -15,4 +15,4 @@ This is a neuron library ROS 2 example for ADLINK's products.
 ## Examples
 * [Uart control](/serial_example/README.md)
 * [GPIO control](/gpio_example/README.md)
-
+* [I2C control](/i2c_example/README.md)

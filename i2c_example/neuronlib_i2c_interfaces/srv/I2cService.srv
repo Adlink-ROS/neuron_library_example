@@ -1,0 +1,8 @@
+string i2c_action
+int8 i2c_bus_num
+int32 dev_addr
+int32 rom_addr
+int8 data_val
+---
+int8 data_read
+string w_result
