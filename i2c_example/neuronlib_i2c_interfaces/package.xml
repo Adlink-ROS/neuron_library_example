@@ -3,7 +3,7 @@
 <package format="3">
   <name>neuronlib_i2c_interfaces</name>
   <version>0.8.0</version>
-  <description>Neuron Library Interfaces</description>
+  <description>Neuron Library Interfaces for I2C</description>
   <maintainer email="chih-chieh.chang@adlinktech.com">ros</maintainer>
   <license>Apache License 2.0</license>
 

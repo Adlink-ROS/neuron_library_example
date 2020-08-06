@@ -35,25 +35,7 @@ SET(CMAKE_INSTALL_RPATH "/home/ros/mraa_ws/src/mraa/build/src") #TODO: change th
 ## Use RPATH while install
 SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
-#add_library(i2c_neuronlib SHARED 
-#  src/i2c_control_service.cpp)
-#ament_target_dependencies(i2c_neuronlib
-# "neuronlib_i2c_interfaces"
-# "rclcpp"
-#"rclcpp_components")
-#target_link_libraries(i2c_neuronlib
-# mraa
-#)
-
-#install(TARGETS
-#  i2c_neuronlib
-#  ARCHIVE DESTINATION lib
-#  LIBRARY DESTINATION lib
-#  RUNTIME DESTINATION bin)
-
-# For client
 add_executable(i2c_client src/i2c_client.cpp)
-
 ament_target_dependencies(i2c_client 
   "neuronlib_i2c_interfaces"
   "rclcpp_components"

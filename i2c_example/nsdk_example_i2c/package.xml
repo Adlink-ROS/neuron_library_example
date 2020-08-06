@@ -2,8 +2,8 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>nsdk_example_i2c</name>
-  <version>0.0.0</version>
-  <description>GPIO Service based on Neuron Library</description>
+  <version>0.8.0</version>
+  <description>I2C Service based on Neuron Library</description>
   <maintainer email="jeffrey870517@gmail.com">jeffrey870517</maintainer>
   <license>Apache License 2.0</license>
 
