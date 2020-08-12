@@ -14,7 +14,7 @@ ros2 run nsdk_example_i2c i2c_control_service
 ```bash
 # Write the ROM through i2c
 ros2 run nsdk_example_i2c i2c_client W <i2c_bus_num> <i2c_device_address> <i2c_rom_address> value
-# Set output to GPIO pin
+# Read the ROM through i2c
 ros2 run nsdk_example_i2c i2c_client R <i2c_bus_num> <i2c_device_address> <i2c_rom_address> 
 ```
   - **Remarks:** Pleace check which i2c hub and address your device is connected to.  
