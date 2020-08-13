@@ -2,7 +2,7 @@
 
 ## Package 'nsdk_example_i2c':
 
-This package contains two executors: gpio_server and gpio_client.
+This package contains two executors: i2c_control_service and led_client.
 
 1. Executor `i2c_control_service` controlls the i2c port by using mraa library, when `i2c_control_service` get the request from `i2c_control_service`, it will read or write the ROM connect through i2c port.  
   - Run the i2c_control_service of this package by using:
@@ -10,7 +10,7 @@ This package contains two executors: gpio_server and gpio_client.
 ros2 run nsdk_example_i2c i2c_control_service
 ```
 2. Executor `i2c_client` calls a request to the `i2c_client`, and in the request contains 2 or 3 parameters. 
-  - Run the gpio_server of this package by using.  
+  - Run the i2c_server of this package by using.  
 ```bash
 # Write the ROM through i2c
 ros2 run nsdk_example_i2c i2c_client W <i2c_bus_num> <i2c_device_address> <i2c_rom_address> value
