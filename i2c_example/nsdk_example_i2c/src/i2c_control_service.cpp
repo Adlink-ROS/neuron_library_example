@@ -1,3 +1,5 @@
+// Copyright 2020 ADLINK Technology, Inc.
+// Developer:  'chih-chieh.chang@adlinktech.com'
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -41,11 +43,11 @@ int handle_service(
     {
         return 1;
     }
-    if (request-> i2c_action == "R" )
+    if (request->i2c_action == "R" )
     {
-        response-> data_read  = mraa_i2c_read_byte_data(i2c,request->rom_addr);
-        RCLCPP_INFO(g_node->get_logger(),"get %d", response-> data_read);
-        response-> w_result = "not_write";
+        response->data_read  = mraa_i2c_read_byte_data(i2c,request->rom_addr);
+        RCLCPP_INFO(g_node->get_logger(),"get %d", response->data_read);
+        response->w_result = "not_write";
         return 1;
     }
     else
@@ -53,7 +55,7 @@ int handle_service(
         status = mraa_i2c_write_byte_data(i2c,request->data_val,request->rom_addr);
         if (status != MRAA_SUCCESS)
         {
-            response-> w_result = "ERROR";
+            response->w_result = "ERROR";
             return 1;
         }
         response->w_result= "SUCCESS";

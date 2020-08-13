@@ -60,14 +60,14 @@ private:
     /* initialize uart*/ 
     uart = mraa_uart_init_raw(dev_path);
     if (uart == NULL) {
-      RCLCPP_ERROR(this-> get_logger(), "Failed to initialize UART\n");
+      RCLCPP_ERROR(this->get_logger(), "Failed to initialize UART\n");
       return EXIT_FAILURE;
     } 
     /* set serial port parameters */
     status =
     mraa_uart_settings(-1, &dev_path, &name, &baudrate, &databits, &stopbits, &parity, &ctsrts, &xonxoff);
     if (status != MRAA_SUCCESS) {
-      RCLCPP_ERROR(this-> get_logger(), "Failed to set serial port parameters UART\n");
+      RCLCPP_ERROR(this->get_logger(), "Failed to set serial port parameters UART\n");
       return EXIT_FAILURE;
     }
     return EXIT_SUCCESS;
