@@ -14,6 +14,32 @@ This is a neuron library ROS 2 example for ADLINK's products.
 
 
 ## Setup
+### Option 1: Install Neuron Lib first.
+1. Install ROS 2
+2. Download and install Neuron Lib 
+```bash
+cd ~/Downlaods
+sudo apt install ./neuron-library-1.0.0-amd64.deb 
+```
+3. Create workspace and git clone this package from github
+```bash 
+# You can name your workspace.
+mkdir -p neuronlib_example_ws/src
+cd neuronlib_example_ws/src
+git clone https://github.com/Adlink-ROS/neuron_library_example.git
+cd ..
+```
+4. Build this ROS 2 package.
+```bash
+colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
+```
+5. Source package
+```bash 
+#Source the package everytime you open a new terminal
+source install/local_setup.bash
+```
+### Option 2: 
+  -Git clone the Libmraa yourself, and set the environment path before building (colcon build) this example.
 1. Install ROS 2
 2. Install and Build the mraa package
 ```bash
@@ -27,7 +53,12 @@ cmake ..
 make 
 cd ..
 ```
-3. Create workspace and git clone this package from github
+3. Set environment path of libmraa.
+```bash
+export NLIB_MRAA_LIBRARY_PATH=~/mraa_ws/src/mraa/build/src
+export NLIB_MRAA_INCLUDE_PATH=~/mraa_ws/src/mraa/api
+```
+4. Create workspace and git clone this package from github
 ```bash 
 # You can name your workspace.
 mkdir -p neuronlib_example_ws/src
@@ -35,14 +66,14 @@ cd neuronlib_example_ws/src
 git clone https://github.com/Adlink-ROS/neuron_library_example.git
 cd ..
 ```
-4. Build this ROS 2 package.
+5. Build this ROS 2 package.
 ```bash
-$ colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
+colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
 ```
-5. Source package
+6. Source package
 ```bash 
 #Source the package everytime you open a new terminal
-$ source install/local_setup.bash
+source install/local_setup.bash
 ```
 
 ## Examples
