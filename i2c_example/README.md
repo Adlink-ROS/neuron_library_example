@@ -2,7 +2,7 @@
 
 ## Package 'nsdk_example_i2c':
 
-This package contains two executors: i2c_control_service and led_client.
+This package contains two executors: i2c_control_service and i2c_client.
 
 1. Executor `i2c_control_service` controlls the i2c port by using mraa library, when `i2c_control_service` get the request from `i2c_control_service`, it will read or write the ROM connect through i2c port.  
   - Run the i2c_control_service of this package by using:
