@@ -61,11 +61,11 @@ int main(int argc, char * argv[])
         RCLCPP_INFO(node->get_logger(), "waiting for i2c_control service to appear...");
     }
     auto request = std::make_shared<i2cservice::Request>();
-    request-> i2c_action  = i2c_act;
-    request-> i2c_bus_num = i2c_bus_num;
-    request-> dev_addr    = i2c_dev_addr;
-    request-> rom_addr    = i2c_rom_addr;
-    request-> data_val    = data_val;
+    request->i2c_action  = i2c_act;
+    request->i2c_bus_num = i2c_bus_num;
+    request->dev_addr    = i2c_dev_addr;
+    request->rom_addr    = i2c_rom_addr;
+    request->data_val    = data_val;
 
     auto result_future = client->async_send_request(request);
     if (rclcpp::spin_until_future_complete(node, result_future) !=
@@ -85,7 +85,7 @@ int main(int argc, char * argv[])
     }
     else
     {
-        RCLCPP_INFO(node->get_logger(),"Read from ROM: %d" , result-> data_read);
+        RCLCPP_INFO(node->get_logger(),"Read from ROM: %d" , result->data_read);
     }
 
     rclcpp::shutdown();

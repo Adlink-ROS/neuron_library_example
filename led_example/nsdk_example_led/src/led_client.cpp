@@ -26,7 +26,6 @@ int main(int argc, char * argv[])
     if (argc < 3) 
     {
         std::cout << "Usage: <led_client> S <led_num> <value>" << std::endl;;
-        std::cout << "       <led_client> C <led_num> " << std::endl;
         std::cout << "       <led_client> R <led_num> " << std::endl;        
         return -1;
     }
@@ -61,9 +60,9 @@ int main(int argc, char * argv[])
         RCLCPP_INFO(node->get_logger(), "waiting for led_control service to appear...");
     }
     auto request = std::make_shared<ledservice::Request>();
-    request-> led_action  = led_act;
-    request -> led_num = led_num;
-    request-> led_val    = led_val;
+    request->led_action = led_act;
+    request->led_num = led_num;
+    request->led_val = led_val;
 
     auto result_future = client->async_send_request(request);
     if (rclcpp::spin_until_future_complete(node, result_future) !=

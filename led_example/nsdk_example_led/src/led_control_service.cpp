@@ -29,7 +29,6 @@ int handle_service(
   const std::shared_ptr<ledservice::Response> response)
 {
     (void)request_header;
-    mraa_result_t status = MRAA_SUCCESS;
     mraa_led_context led;
     int val;
     led = mraa_led_init(request->led_num);
@@ -38,39 +37,30 @@ int handle_service(
     {
         RCLCPP_ERROR(g_node->get_logger(), "Failed to initialize LED\n");
         mraa_deinit();
-        response ->r_status = "FAIL";
+        response->r_status = "FAIL";
         return 1;
 
     }
 
-    if (request-> led_action == "S" )
+    if (request->led_action == "S" )
     {
-        val = mraa_led_read_max_brightness(led);
-        mraa_led_set_brightness(led,val);
-        response -> r_status = "not_read";
+        mraa_led_set_brightness(led,request->led_val);
+        response->r_status = "not_read";
     }
-    else if (request->led_action == "C")
-    {
-        status = mraa_led_close(led);
-        if (status != MRAA_SUCCESS)
-        {
-            RCLCPP_ERROR(g_node->get_logger(), "Failed to close LED\n");
-            response -> r_status = "not_read";
-        }
-    }
+
     else
     {
         val = mraa_led_read_brightness(led);
         if (val == 0)
         {
-            response-> r_status = "BRIGHT";
-            return 1;
+            response->r_status = "BRIGHT";
         }
         else
         {    
             response->r_status= "DARK";
         }
     }
+    mraa_led_close(led);
     return 1; 
 }
 

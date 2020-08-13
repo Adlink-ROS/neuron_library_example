@@ -27,7 +27,7 @@ public:
         auto handle_gpio_service =
           [this](const std::shared_ptr<rmw_request_id_t> request_header,
            const std::shared_ptr<neuronlib_interfaces::srv::GpioService::Request> request,
-            std::shared_ptr<neuronlib_interfaces::srv::GpioService::Response> response)-> void         
+            std::shared_ptr<neuronlib_interfaces::srv::GpioService::Response> response)->void         
         {
 
             (void)request_header;
