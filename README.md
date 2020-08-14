@@ -77,7 +77,7 @@ source install/local_setup.bash
 ```
 
 ## Examples
-To view usage detail, pleace click the link below. 
+To view usage details, pleace click the link below. 
 * [Uart control](/serial_example/README.md)
 * [GPIO control](/gpio_example/README.md)
 * [I2C control](/i2c_example/README.md)
