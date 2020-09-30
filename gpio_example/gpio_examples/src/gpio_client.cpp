@@ -69,7 +69,7 @@ int main(int argc, char *argv[]) {
     // Send the request
     auto result = send_request(node, client, request);
     if (result) {
-        RCLCPP_INFO(node->get_logger(), "result=%d, ret_val=%d", result->result, result->ret_val);
+        RCLCPP_INFO(node->get_logger(), "result=%d, get_val=%d", result->result, result->ret_val);
     } else {
         RCLCPP_ERROR(node->get_logger(), "Catch interrupt and stop the program!");
     }

@@ -3,3 +3,4 @@ int8 led_num
 int8 led_val 
 ---
 string r_status
+int32 r_val

@@ -31,6 +31,12 @@ int main(int argc, char * argv[])
     }
 
     char led_act = argv[1][0];
+    if (led_act != 'S' && led_act != 'R' )
+    {
+        std::cout << "Usage: <led_client> S <led_num> <value>" << std::endl;;
+        std::cout << "       <led_client> R <led_num> " << std::endl;        
+        return -1;
+    }
     int8_t led_num = std::stoi(argv[2]);
     int8_t led_val;
     if (led_act == 'S') 
@@ -72,13 +78,9 @@ int main(int argc, char * argv[])
         return 1;
     }
     auto result = result_future.get();
-    if (result->r_status == "BRIGHT")
+    if (result->r_status == "read")
     {
-        RCLCPP_INFO(node->get_logger(),"This LED is on.");
-    }
-    else if (result->r_status == "DARK")
-    {
-        RCLCPP_INFO(node->get_logger(),"This LED is off.");
+        RCLCPP_INFO(node->get_logger(),"This LED is set to %d.",result->r_val);
     }
     else if (result->r_status == "not_read")
     {
