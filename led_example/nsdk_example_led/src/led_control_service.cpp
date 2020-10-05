@@ -30,35 +30,35 @@ int handle_service(
 {
     (void)request_header;
     mraa_led_context led;
+    mraa_result_t status = MRAA_SUCCESS;
     int val;
     led = mraa_led_init(request->led_num);
     RCLCPP_INFO(g_node->get_logger(),"LED num: %d",request->led_num);
     if (led == NULL) 
     {
-        RCLCPP_ERROR(g_node->get_logger(), "Failed to initialize LED\n");
+        RCLCPP_ERROR(g_node->get_logger(), "Failed to initialize LED%d",request->led_num);
         mraa_deinit();
-        response->r_status = "FAIL";
+        response->ret_status = 1;   //return status fail
         return 1;
-
     }
 
     if (request->led_action == "S" )
     {
-        mraa_led_set_brightness(led,request->led_val);
-        response->r_status = "not_read";
+        status = mraa_led_set_brightness(led,request->led_val);
+        if (status != MRAA_SUCCESS) 
+        {
+            RCLCPP_ERROR(g_node->get_logger(), "Failed to set LED%d brightness.",request->led_num);
+            response->ret_status= 1 ;   //return status fail
+            return 1;
+        }
+        response->ret_status = 0;  //return status success
     }
 
     else
     {
         val = mraa_led_read_brightness(led);
-        if (val == 0)
-        {
-            response->r_status = "BRIGHT";
-        }
-        else
-        {    
-            response->r_status= "DARK";
-        }
+        response->ret_status = 0;  //return status success
+        response->ret_val = val;
     }
     mraa_led_close(led);
     return 1; 

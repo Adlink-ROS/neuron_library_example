@@ -1,5 +1,6 @@
-string led_action
+string led_action  # message of read or set brightness of the led
 int8 led_num
-int8 led_val 
+uint8 led_val 
 ---
-string r_status
+int8 ret_status # result of read or set the led, 0 for success, 1 for failure
+uint8 ret_val

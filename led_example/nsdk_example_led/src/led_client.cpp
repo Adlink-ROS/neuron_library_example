@@ -31,6 +31,12 @@ int main(int argc, char * argv[])
     }
 
     char led_act = argv[1][0];
+    if (led_act != 'S' && led_act != 'R' )
+    {
+        std::cout << "Usage: <led_client> S <led_num> <value>" << std::endl;;
+        std::cout << "       <led_client> R <led_num> " << std::endl;        
+        return -1;
+    }
     int8_t led_num = std::stoi(argv[2]);
     int8_t led_val;
     if (led_act == 'S') 
@@ -72,19 +78,15 @@ int main(int argc, char * argv[])
         return 1;
     }
     auto result = result_future.get();
-    if (result->r_status == "BRIGHT")
+    if ( led_act == 'R' && result->ret_status == 0)
     {
-        RCLCPP_INFO(node->get_logger(),"This LED is on.");
+        RCLCPP_INFO(node->get_logger(),"This LED is set to %d.",result->ret_val);
     }
-    else if (result->r_status == "DARK")
-    {
-        RCLCPP_INFO(node->get_logger(),"This LED is off.");
-    }
-    else if (result->r_status == "not_read")
+    if ( led_act == 'S'&& result->ret_status == 0)
     {
         RCLCPP_INFO(node->get_logger(),"LED set successfully."  );
     }
-    else
+    if (result->ret_status == 1 )
     {
         RCLCPP_ERROR(node->get_logger(),"Failed! Read the message at service node.");
     }
