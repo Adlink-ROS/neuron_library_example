@@ -78,15 +78,15 @@ int main(int argc, char * argv[])
         return 1;
     }
     auto result = result_future.get();
-    if (result->r_status == "read")
+    if ( led_act == 'R' && result->ret_status == 0)
     {
-        RCLCPP_INFO(node->get_logger(),"This LED is set to %d.",result->r_val);
+        RCLCPP_INFO(node->get_logger(),"This LED is set to %d.",result->ret_val);
     }
-    else if (result->r_status == "not_read")
+    if ( led_act == 'S'&& result->ret_status == 0)
     {
         RCLCPP_INFO(node->get_logger(),"LED set successfully."  );
     }
-    else
+    if (result->ret_status == 1 )
     {
         RCLCPP_ERROR(node->get_logger(),"Failed! Read the message at service node.");
     }
