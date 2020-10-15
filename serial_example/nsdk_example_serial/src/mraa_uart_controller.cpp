@@ -24,7 +24,7 @@ using std::placeholders::_1;
 #endif
 
 /* UART port name */
-const char* dev_path = "/dev/ttyS1";
+const char* dev_path = "/dev/ttyTHS0";
 mraa_uart_context uart;
 int baudrate = 9600, stopbits = 1, databits = 8;
 mraa_uart_parity_t parity = MRAA_UART_PARITY_NONE;

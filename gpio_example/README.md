@@ -10,7 +10,7 @@ This package contains two executors: gpio_server and gpio_client.
 ros2 run nsdk_example_gpio gpio_server
 ```
 2. Executor `gpio_client` calls a request to the `gpio_server`, and in the request contains 2 or 3 parameters. 
-  - Run the gpio_server of this package by using.  
+  - Run the gpio_client of this package by using.  
 ```bash
 # Set input to GPIO pin
 ros2 run nsdk_example_gpio gpio_client I <gpio_num>
