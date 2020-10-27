@@ -4,13 +4,13 @@
 
 This package contains two executors: gpio_server and gpio_client.
 
-1. Executor `gpio_server` controlls the gpio port by using mraa library, when `gpio_server` get the request from `gpio_client`, it will read or write the GPIO port.  
+1. Executor `gpio_server` controls the gpio port by using mraa library, when `gpio_server` get the request from `gpio_client`, it will read or write the GPIO port.  
   - Run the gpio_server of this package by using:
 ```bash
 ros2 run nsdk_example_gpio gpio_server
 ```
 2. Executor `gpio_client` calls a request to the `gpio_server`, and in the request contains 2 or 3 parameters. 
-  - Run the gpio_server of this package by using.  
+  - Run the gpio_client of this package by using.  
 ```bash
 # Set input to GPIO pin
 ros2 run nsdk_example_gpio gpio_client I <gpio_num>

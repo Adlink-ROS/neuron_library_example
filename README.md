@@ -87,3 +87,5 @@ To view the usage of examples more detailed, pleace click the links below.
 * [GPIO control](/gpio_example/README.md)
 * [I2C control](/i2c_example/README.md)
 * [LED control](/led_example/README.md)
+* [PWM control](/pwm_example/README.md)
+* [SPI control](/spi_example/README.md)
