@@ -4,12 +4,12 @@
 
 This package contains two executors: spi_control_subscriber and spi_publisher. This example transforms hex code through SPI to control a chip MAX7219, and this chp contorls an 8x8 LED Matrix. You could translate your image to hex code using this tool on this wedsite: [DotMatrixTool](dotmatrixtool.com).
 
-1. Executor `spi_control_subscriber` controlls the SPI by using mraa library, when `spi_control_subscriber` get the message from `spi_publisher`, it will send hex code through SPI to the MAX7219, and controls the LED Matrix.  
+1. Executor `spi_control_subscriber` controls the SPI by using mraa library, when `spi_control_subscriber` get the message from `spi_publisher`, it will send hex code through SPI to the MAX7219, and controls the LED Matrix.  
   - Run the pwm_control_subscriber of this package by using:
 ```bash
  ros2 run nsdk_example_spi spi_control_subscriber 
 ```
-2. Executor `spi_publisher` publishes one message to the topic `/spi_control_msg` every time you execute it , and in the message contains every hex you send to the program. Composition of the hex data: 0xaabb, aa is for the value you want to set to the address, bb is for the address. Pleace refer to register map of MAX7219 for the mapping odf the address.
+2. Executor `spi_publisher` publishes one message to the topic `/spi_control_msg` every time you execute it , and in the message contains every hex you send to the program. Composition of the hex data: 0xaabb, aa is for the value you want to set to the address, bb is for the address. Pleace refer to register map of MAX7219 for the mapping of the address.
   - Run the pwn_publisher of this package by using.  
 ```bash
 ros2 run nsdk_example_spi spi_publisher <LED setup message1(hex)> <LED setup message2(hex)>...

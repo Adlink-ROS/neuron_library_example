@@ -4,7 +4,7 @@
 
 This package contains two executors: pwm_control_subscriber and pwm_publisher.
 
-1. Executor `pwm_control_subscriber` controlls the PWM by using mraa library, when `pwm_control_subscriber` get the message from `pwm_publisher`, it will set the PWM signal including duty cycle and period.  
+1. Executor `pwm_control_subscriber` controls the PWM by using mraa library, when `pwm_control_subscriber` get the message from `pwm_publisher`, it will set the PWM signal including duty cycle and period.  
   - Run the pwm_control_subscriber of this package by using:
 ```bash
  ros2 run nsdk_example_pwm pwm_control_subscriber
