@@ -38,7 +38,7 @@ int main(int argc, char * argv[])
         return -1;
     }
     int8_t led_num = std::stoi(argv[2]);
-    int8_t led_val;
+    int8_t led_val = 0;
     if (led_act == 'S') 
     {
         if (argc < 4) 
