@@ -34,6 +34,12 @@ int main(int argc, char * argv[])
     int32_t i2c_dev_addr = std::stoi(argv[3],0,0);
     int32_t i2c_rom_addr = std::stoi(argv[4],0,0);
     int8_t data_val = 0;
+    if (i2c_act != 'W' && i2c_act!= 'R')
+    {
+        std::cout << "Usage: <i2c_client> R <i2c_bus_num> <i2c_device_address> <i2c_rom_address>" << std::endl;;
+        std::cout << "       <i2c_client> W <i2c_bus_num> <i2c_device_address> <i2c_rom_address> value" << std::endl;
+        return -1;
+    }
     if (i2c_act == 'W') 
     {
         if (argc < 6) 
@@ -46,6 +52,7 @@ int main(int argc, char * argv[])
             data_val = std::stoi(argv[5],0,0);
         }
     }
+
 
     rclcpp::init(argc, argv);
 
