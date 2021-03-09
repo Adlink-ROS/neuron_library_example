@@ -37,7 +37,6 @@ int handle_service(
     if (led == NULL) 
     {
         RCLCPP_ERROR(g_node->get_logger(), "Failed to initialize LED%d",request->led_num);
-        mraa_deinit();
         response->ret_status = 1;   //return status fail
         return 1;
     }
@@ -73,6 +72,7 @@ int main(int argc, char ** argv)
     rclcpp::spin(g_node);
     rclcpp::shutdown();
     g_node = nullptr;
+    mraa_deinit();
     return 0;
 }
 
