@@ -13,7 +13,7 @@ ros2 run nsdk_example_led led_control_service
   - Run the led_client of this package by using.  
 ```bash
 # Set the brightness of LED
-# For ROSCube-I, LEDs can be set to on(value set 0) or off(value set 1).
+# For ROSCube-I, LEDs can be set to on(value set 1) or off(value set 0).
 # For ROSCube-X, LEDs can be set to on(value set from 1 to 255) or off(value set 0).
 ros2 run nsdk_example_led led_client S <led_num> value
 #Read the the value of LED.
