@@ -19,6 +19,7 @@ int pwm_init()
 {
   mraa_init();
   pwm = mraa_pwm_init(PWM);
+  std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // add enough delay before access
   if (pwm == NULL) 
   {
     fprintf(stderr, "Failed to initialize PWM\n");

@@ -20,6 +20,7 @@ int spi_init()
 {
   mraa_init();
   spi = mraa_spi_init(SPI_BUS);
+  std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // add enough delay before access
   if (spi == NULL) 
   {
     fprintf(stderr,  "Failed to initialize SPI\n");

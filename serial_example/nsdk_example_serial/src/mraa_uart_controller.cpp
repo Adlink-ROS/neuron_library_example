@@ -59,6 +59,7 @@ private:
     //! [Interesting]
     /* initialize uart*/ 
     uart = mraa_uart_init_raw(dev_path);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // add enough delay before access
     if (uart == NULL) {
       RCLCPP_ERROR(this->get_logger(), "Failed to initialize UART\n");
       return EXIT_FAILURE;

@@ -32,6 +32,7 @@ int handle_service(
     mraa_result_t status = MRAA_SUCCESS;
     mraa_i2c_context i2c;
     i2c = mraa_i2c_init(request->i2c_bus_num);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // add enough delay before access
     if (i2c == NULL) 
     {
         RCLCPP_ERROR(g_node->get_logger(), "Failed to initialize I2C\n");
