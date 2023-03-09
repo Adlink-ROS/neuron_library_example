@@ -33,6 +33,8 @@ int handle_service(
     mraa_result_t status = MRAA_SUCCESS;
     int val;
     led = mraa_led_init(request->led_num);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // add enough delay before controlling the LED pin
+
     RCLCPP_INFO(g_node->get_logger(),"LED num: %d",request->led_num);
     if (led == NULL) 
     {
