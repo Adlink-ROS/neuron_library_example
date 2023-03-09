@@ -69,7 +69,11 @@ int main(int argc, char *argv[]) {
     // Send the request
     auto result = send_request(node, client, request);
     if (result) {
-        RCLCPP_INFO(node->get_logger(), "result=%d, get_val=%d", result->result, result->ret_val);
+	if (gpio_dir == 'I') {
+        	RCLCPP_INFO(node->get_logger(), "gpio_num_%d, get_val=%d", gpio_num, result->ret_val);
+	} else {
+		RCLCPP_INFO(node->get_logger(), "gpio_num_%d, set_val=%d", gpio_num, gpio_val);
+	}
     } else {
         RCLCPP_ERROR(node->get_logger(), "Catch interrupt and stop the program!");
     }

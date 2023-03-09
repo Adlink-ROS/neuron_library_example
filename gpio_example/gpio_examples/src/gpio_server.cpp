@@ -35,14 +35,22 @@ public:
             response->result = 0;
             response->ret_val = 0;
             // Print value received
-            RCLCPP_INFO(this->get_logger(), "Incoming request\ndirection:%c, gpio_num:%d, value:%d" ,
+	    if (request->direction == 'I')
+	    {
+		RCLCPP_INFO(this->get_logger(), "Incoming request\ndirection:%c, gpio_num:%d" ,
+                        request->direction, request->gpio_num);
+	    }
+	    else
+	    {
+            	RCLCPP_INFO(this->get_logger(), "Incoming request\ndirection:%c, gpio_num:%d, set_value:%d" ,
                         request->direction, request->gpio_num, request->value);
+	    }
             
             
-            if (gpio_pin[request->gpio_num]==NULL)
+            if (gpio_pin[request->gpio_num] == NULL)
             {
                 gpio_pin[request->gpio_num] = mraa_gpio_init(request->gpio_num);
-
+   	    	std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // add enough delay before controlling the GPIO pin
             }
             if (gpio_pin[request->gpio_num] == NULL)
             {
