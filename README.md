@@ -15,7 +15,8 @@ You can easily rewrite your program based on these examples.
 
 ## Setup
 ### Option 1: Install Neuron Library
-If you use Neuron SDK, then Neuron Library should be built-in.
+If you use Neuron SDK, then Neuron Library should be built-in. Otherwise, you can download Neuron Library [here](https://github.com/Adlink-ROS/mraa/releases)
+
 You can use the example directly.
 
 Please contact ADLINK if you have any question about Neuorn Library.
