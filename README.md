@@ -32,11 +32,12 @@ cd ..
 ```
 3. Build this ROS 2 package.
 ```bash
+# please source ROS 2 develop env before colcon build
 colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
 ```
 4. Source package
 ```bash 
-#Source the package everytime you open a new terminal
+# Source the package everytime you open a new terminal
 source install/local_setup.bash
 ```
 
